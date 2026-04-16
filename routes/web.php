@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\FormController;
 use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\TeamsController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -21,3 +22,5 @@ Route::get('/players/search', [PlayerController::class, 'searchplayers']);
 Route::delete('/players/{id}', [PlayerController::class, 'deletePlayer']);
 Route::get('/players/{id}/edit', [PlayerController::class, 'editPlayer']);
 Route::put('/players/{id}', [PlayerController::class, 'updatePlayer']);
+Route::get('/teams', [TeamsController::class, 'showTeams']);
+Route::post('/teams', [TeamsController::class, 'createTeam']);

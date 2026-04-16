@@ -10,6 +10,8 @@
         <input type="text" name="search" value="{{ request('search') }}" placeholder="Buscar por nombre o edad">
         <button type="submit">Buscar</button>
         <a href="/players" style="margin-left: 1rem;">Limpiar</a>
+        <a href="/teams" style="margin-left: 1rem;">Equipos</a>
+
     </form>
 
     <form action="/players" method="post">
