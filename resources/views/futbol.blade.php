@@ -18,6 +18,12 @@
         @csrf
         <input type="text" name="nombre" placeholder="Nombre de jugador">
         <input type="number" name="edad" placeholder="Edad">
+        <select name="team_id">
+            <option value="">Seleccionar equipo</option>
+            @foreach ($teams as $team)
+                <option value="{{ $team->id }}">{{ $team->name }}</option>
+            @endforeach
+        </select>
         <button type="submit">Enviar</button>
     </form>
     <h2>Jugadores:</h2>
@@ -27,6 +33,7 @@
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Edad</th>
+                <th>Equipo</th>
             </tr>
         </thead>
         <tbody>
@@ -35,6 +42,7 @@
                     <td>{{ $player->id }}</td>
                     <td>{{ $player->nombre }}</td>
                     <td>{{ $player->edad }}</td>
+                    <td>{{ $player->team?->name ?? 'Sin equipo' }}</td>
                     <td>
                         <form action="/players/{{ $player->id }}" method="post" style="display: inline;">
                             @csrf
