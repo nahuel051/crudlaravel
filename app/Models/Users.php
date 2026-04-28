@@ -17,6 +17,6 @@ class Users extends Model
     public function rol()
     {
         //muchos a uno: varios usuarios pueden compartir el mismo id_rol, indicando que tienen el mismo rol
-        return $this->belongsTo(Rol::class, 'id_rol');
+        return $this->belongsTo(Roles::class, 'id_rol');
     }
 }

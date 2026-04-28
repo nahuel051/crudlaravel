@@ -7,11 +7,12 @@
 </head>
 <body>
     <form action="/players/search" method="get" style="margin-bottom: 1rem;">
-        //value="{{ request('search') }}" para mantener el valor de búsqueda después de enviar el formulario
+        <!-- //value="{{ request('search') }}" para mantener el valor de búsqueda después de enviar el formulario -->
         <input type="text" name="search" value="{{ request('search') }}" placeholder="Buscar por nombre o edad">
         <button type="submit">Buscar</button>
         <a href="/players" style="margin-left: 1rem;">Limpiar</a>
         <a href="/teams" style="margin-left: 1rem;">Equipos</a>
+        <a href="/usuarios" style="margin-left: 1rem;">Usuarios</a>
 
     </form>
 
@@ -47,13 +48,13 @@
                     <td>{{ $player->edad }}</td>
                     <td>{{ $player->team?->name ?? 'Sin equipo' }}</td>
                     <td>
-                        //action="/players/{{ $player->id }}" para enviar la solicitud de eliminación al controlador correspondiente
+                        <!-- //action="/players/{{ $player->id }}" para enviar la solicitud de eliminación al controlador correspondiente -->
                         <form action="/players/{{ $player->id }}" method="post" style="display: inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit">Eliminar</button>
                         </form>
-                        //enlace para editar el jugador, redirigiendo a la vista de edición con el id del jugador
+                        <!-- enlace para editar el jugador, redirigiendo a la vista de edición con el id del jugador -->
                         <a href="/players/{{ $player->id }}/edit">Editar</a>
                     </td>
                     
