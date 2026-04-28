@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('edad');
+            // Clave foránea: establece relación con tabla 'teams'
+            // constrained() detecta automáticamente la PK 'id' de teams
+            // onDelete('cascade'): al eliminar un equipo, se borran sus jugadores relacionados
             $table->foreignId('team_id')->constrained('teams')->onDelete('cascade');
 
         });
@@ -22,6 +25,10 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
+     * Se ejecuta al deshacer la migración (rollback):
+     * - php artisan migrate:rollback
+     * - php artisan migrate:reset
+     * Elimina la tabla 'futbol' si existe, revertiendo los cambios de up()
      */
     public function down(): void
     {
