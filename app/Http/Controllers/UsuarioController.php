@@ -24,6 +24,10 @@ class UsuarioController extends Controller
         return redirect('/usuarios');    }
     public function showUsers()
     {
+            // si NO es admin → bloquear
+            if(auth()->user()->rol && auth()->user()->rol->nombre_rol !== 'admin'){
+                abort(403);
+            }
         $usuarios = Users::all();
         $roles = Roles::all();
         return view('usuarios', [

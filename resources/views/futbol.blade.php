@@ -14,8 +14,9 @@
         <button type="submit">Buscar</button>
         <a href="/players" style="margin-left: 1rem;">Limpiar</a>
         <a href="/teams" style="margin-left: 1rem;">Equipos</a>
-        <a href="/usuarios" style="margin-left: 1rem;">Usuarios</a>
-
+        @if(auth()->user()->rol && auth()->user()->rol->nombre_rol === 'admin')
+            <a href="/usuarios" style="margin-left: 1rem;">Usuarios</a>
+        @endif
     </form>
     <a href="/logout" style="margin-left: 1rem;">Cerrar Sesión</a>
     <form action="/players" method="post">
