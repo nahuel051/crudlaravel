@@ -6,6 +6,8 @@
     <title>Futbol</title>
 </head>
 <body>
+    @auth
+    <h1>Bienvenido {{ auth()->user()->usuario }}</h1>
     <form action="/players/search" method="get" style="margin-bottom: 1rem;">
         <!-- //value="{{ request('search') }}" para mantener el valor de búsqueda después de enviar el formulario -->
         <input type="text" name="search" value="{{ request('search') }}" placeholder="Buscar por nombre o edad">
@@ -15,7 +17,7 @@
         <a href="/usuarios" style="margin-left: 1rem;">Usuarios</a>
 
     </form>
-
+    <a href="/logout" style="margin-left: 1rem;">Cerrar Sesión</a>
     <form action="/players" method="post">
         @csrf
         <input type="text" name="nombre" placeholder="Nombre de jugador">
@@ -62,5 +64,6 @@
             @endforeach
         </tbody>
     </table>
+    @endauth
 </body>
 </html>

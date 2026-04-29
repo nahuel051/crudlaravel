@@ -31,4 +31,5 @@ class UsuarioController extends Controller
             'roles' => $roles,
         ]);
     }
+    
 }

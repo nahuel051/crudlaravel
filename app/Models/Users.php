@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Users extends Model
+class Users extends Authenticatable
 {
     protected $table = 'user';
+    public $timestamps = false;
 
     protected $fillable = [
         'usuario',
@@ -14,9 +15,17 @@ class Users extends Model
         'id_rol',
     ];
 
+    protected $hidden = [
+        'password',
+    ];
+
+    public function getAuthPassword()
+    {
+        return $this->password;
+    }
+
     public function rol()
     {
-        //muchos a uno: varios usuarios pueden compartir el mismo id_rol, indicando que tienen el mismo rol
         return $this->belongsTo(Roles::class, 'id_rol');
     }
 }
