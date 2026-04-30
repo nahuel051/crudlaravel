@@ -83,6 +83,7 @@ class PlayerController extends Controller
     public function searchplayers(Request $request)
     {
         $searchTerm = $request->input('search');
+        $teamId = $request->team_id;
         $players = Player::where('nombre', 'LIKE', '%' . $searchTerm . '%')
             ->orWhere('edad', 'LIKE', '%' . $searchTerm . '%')
             // orWhereHas: sirve para aplicar or sobre realaciones, busca en tabla relacionada (teams) a través de la relación 'team'
@@ -93,11 +94,15 @@ class PlayerController extends Controller
                 $query->where('name', 'LIKE', '%' . $searchTerm . '%');
             })
             ->get();
+            if ($teamId) {
+                $players = $players->where('team_id', $teamId);
+            }
         $teams = Team::all();
 
         return view('futbol', [
             'players' => $players,
             'teams' => $teams,
+            'team_id' => $teamId,
         ]);
     }
 }

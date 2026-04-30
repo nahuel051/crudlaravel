@@ -11,6 +11,12 @@
     <form action="/players/search" method="get" style="margin-bottom: 1rem;">
         <!-- //value="{{ request('search') }}" para mantener el valor de búsqueda después de enviar el formulario -->
         <input type="text" name="search" value="{{ request('search') }}" placeholder="Buscar por nombre o edad">
+        <select name="team_id">
+            <option value="">Seleccionar equipo</option>
+            @foreach ($teams as $team)
+                <option value="{{ $team->id }}" {{ request('team_id') == $team->id ? 'selected' : '' }}>{{ $team->name }}</option>
+            @endforeach
+        </select>
         <button type="submit">Buscar</button>
         <a href="/players" style="margin-left: 1rem;">Limpiar</a>
         <a href="/teams" style="margin-left: 1rem;">Equipos</a>
